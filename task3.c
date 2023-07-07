@@ -10,7 +10,7 @@ int arraySum = 0;
 
 pthread_mutex_t mutexLock = PTHREAD_MUTEX_INITIALIZER;
 
-void sumCalculator(void *args);
+void *sumCalculator(void *args);
 
 // structure to pass arguments to the target function of threads
 typedef struct
@@ -20,7 +20,7 @@ typedef struct
     int *arr;
 } ThreadArgs;
 
-void sumCalculator(void *args)
+void *sumCalculator(void *args)
 {
     // casting the type to ThreadArgs
     ThreadArgs *arg = (ThreadArgs *)args;
@@ -56,8 +56,8 @@ for (int i=0;i<100;i++){
         {
             argsArr[i].startIndex = threadZone * i;
             argsArr[i].size = threadZone;
-            argsArr[i].arr = &array;
-            pthread_create(&thread_id[i], NULL, sumCalculator, (void *)&argsArr[i] );
+            argsArr[i].arr = array;
+            pthread_create(&thread_id[i], NULL, sumCalculator,(void *)&argsArr[i] );
 
             
         }  
@@ -71,11 +71,5 @@ for (int i=0;i<100;i++){
 
     exit(EXIT_SUCCESS);
         
-        
-
-
-
-    
-
     return 0;
 }

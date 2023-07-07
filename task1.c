@@ -11,6 +11,7 @@ int num2;
 int main()
 {
 
+
     void swap_int(int * a,int * b){
         int temp = *a;
         *a = *b;
@@ -23,8 +24,12 @@ int main()
     ptr1 = &num1;
     ptr2 = &num2;
 
+   printf("before swap\nptr1 points to: %d\n ",*ptr1);
+    printf("ptr2 points to: %d\n ",*ptr2);
+
     swap_int(ptr1,ptr2);
-    printf("ptr1 points to %d\n: ",*ptr1);
-    printf("ptr2 points to %d\n: ",*ptr2);
+
+    printf("after swap\nptr1 points to: %d\n ",*ptr1);
+    printf("ptr2 points to: %d\n ",*ptr2);
     return 0;
 }
